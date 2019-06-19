@@ -1,12 +1,12 @@
 요즘 개발 이야기, 함수형 프로그래밍 정의
 
 요즘 개발 ? : 그렇지만 타협할 수 없는 생산성!
-*CSP :
-*Actor :
-*STM :
-*ELB :
-*Auto Scaling :
-*OTP Supervisor :
+*CSP : 콘텐츠 보안 정책 (http content-security-policy)
+
+*ELB : Elastic Load Balancing 시스템에 가해지는 부하를 여러대의 시스템으로 분산해서 규모있는 시스템을 만들 수 있도록 해주는 단일 진입점
+*Auto Scaling : Auto Scaling은 EC2 인스턴스를 자동으로 생성하고 삭제해주는 서비스 (아마존)
+
+*OTP Supervisor : 슈퍼바이저(Supervisor)는 다른 프로세스의 감시라는 단 하나의 목적에 특화된 프로세스입니다. 자식 프로세스가 실패하면 자동으로 재시작해주는 것으로 장애에 대한 내성이 높은(Fault-tolerant) 애플리케이션을 만들 수 있게 해줍니다
 
 재미 / 실시간성 : 라이브 방송, 실시간 댓글, 협업, 메신저
 
