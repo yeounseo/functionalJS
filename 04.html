@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>함수형으로 전환하기</title>
+</head>
+
+<body>
+    <script>
+        var users = [
+            { id: 1, name: 'PR', age: 36 },
+            { id: 2, name: 'US', age: 22 },
+            { id: 3, name: 'JM', age: 35 },
+            { id: 4, name: 'DL', age: 40 },
+            { id: 5, name: 'TL', age: 12 },
+            { id: 6, name: 'OP', age: 22 },
+            { id: 7, name: 'ZF', age: 21 },
+            { id: 8, name: 'SL', age: 67 },
+            { id: 9, name: 'CC', age: 55 },
+            { id: 10, name: 'CJ', age: 46 },
+        ];
+
+        // 1. 명령형 코드
+        // 1. 30세 이상인 users를 거른다.
+        var temp_users = [];
+        for (var i = 0; i < users.length; i++) {
+            if (users[i].age >= 30) {
+                temp_users.push(users[i]);
+            }
+        }
+        console.log(temp_users);
+
+        // 2. 30세 이상인 users의 names를 수집한다.
+        var names = [];
+        for (var i = 0; i < temp_users.length; i++) {
+            names.push(temp_users[i].name);
+        }
+        console.log(names);
+
+        // 3. 30세 미만인 users를 거른다.
+        var temp_users = [];
+        for (var i = 0; i < users.length; i++) {
+            if (users[i].age < 30) {
+                temp_users.push(users[i]);
+            }
+        }
+        console.log(temp_users);
+
+        // 4. 30세 미만인 users의 ages를 수집한다.
+        var ages = [];
+
+        for (var i = 0; i < temp_users.length; i++) {
+            ages.push(temp_users[i].age);
+        }
+        console.log(ages);
+
+        // 2. _filter, _map 으로 리팩토링
+        function _filter(list, predi) {
+            var new_list = [];
+            // for (var i = 0; i < list.length; i++) {
+            //     if (predi(list[i])) {
+            //         new_list.push(list[i]);
+            //     }
+            // }
+            _each(list, function (val) {
+                if (predi(val)) {
+                    new_list.push(val);
+                }
+            });
+            return new_list;
+        }
+        // 위의 함수에서 predi라는 함수를 인자로 넣어서 필요에 따라 function의 인자와 return 값을 넣어서 프로그래밍 (응용형 , 적용형 함수 프로그래밍)
+
+
+        console.log(
+            _filter(users, function (user) {
+                return user.age >= 30;
+            })
+        );
+
+        console.log(
+            _filter(users, function (user) {
+                return user.age < 30;
+            })
+        );
+        // users만을 위한 중복을 제거하는 함수가 아니다. 
+        // _filter 함수는 users와 상관없는 전혀 다른 값들도 필터링 할 수 있다.
+        // 다형성 , 재활용성이 높은 함수라고 할 수 있다.
+
+        console.log(
+            _filter([1, 2, 3, 4], function (num) { return num % 2; })
+        );
+        console.log(
+            _filter([1, 2, 3, 4], function (num) {
+                return !(num & 2)
+            })
+        );
+
+        // _map 함수 예제
+        function _map(list, mapper) {
+            var new_list = [];
+            // for (var i = 0; i < list.length; i++) {
+            //     new_list.push(mapper(list[i]));
+            // }
+            _each(list, function (val) {
+                new_list.push(mapper(val));
+            });
+            return new_list;
+        }
+
+        function _each(list, iter) {
+            for (var i = 0; i < list.length; i++) {
+                iter(list[i]);
+            }
+            return list;
+        }
+
+    </script>
+</body>
+
+</html>
